@@ -1,0 +1,35 @@
+body {
+  background: #f7f7f7;
+  font-family: sans-serif;
+}
+
+span {
+  display: inline-block;
+  font-size: 180px;
+  font-weight: bold;
+}
+
+.d {
+  margin-right: -90px;
+  color: #01cdaa;
+}
+
+.x {
+  margin-right: -62px;
+  color: #ff318b;
+  opacity: .8;
+}
+
+.l {
+  color: #2edce3;
+  opacity: .7;
+}
+
+.d.c {
+  margin-right: -28px;
+}
+
+.x.l {
+  margin-right: -31px;
+  color: #ff318b;
+}

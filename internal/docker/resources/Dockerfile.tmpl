@@ -1,0 +1,32 @@
+FROM alpine:3.14.2
+
+RUN apk add --virtual .asdf-deps --no-cache bash curl git unzip grep
+SHELL ["/bin/bash", "-l", "-c"]
+RUN adduser -s /bin/bash -h /asdf -D asdf
+ENV PATH="${PATH}:/asdf/.asdf/shims:/asdf/.asdf/bin"
+
+USER asdf
+WORKDIR /asdf
+
+
+RUN git clone --depth 1 https://github.com/asdf-vm/asdf.git $HOME/.asdf && \
+    echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc && \
+    echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.profile
+
+{{ if .Tools.awscli }}
+RUN asdf plugin-add awscli https://github.com/MetricMike/asdf-awscli.git
+RUN asdf install awscli 2.2.32
+RUN asdf global awscli 2.2.32
+{{ end }}
+{{ if .Tools.terraform }}
+RUN asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+RUN asdf install terraform 0.15.5
+RUN asdf global terraform 0.15.5
+{{ end }}
+{{ if .Tools.kubectl }}
+RUN asdf plugin-add kubectl https://github.com/asdf-community/asdf-kubectl.git
+RUN asdf install kubectl 1.22.1
+RUN asdf global kubectl 1.22.1
+{{ end }}
+
+CMD ["tail", "-f", "/dev/null"]
