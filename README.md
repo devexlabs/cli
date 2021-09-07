@@ -4,6 +4,24 @@
 
 [devexlabs cli](https://github.com/devexlabs/cli) is a tool designed to facilitate the installation and use of command line tools.
 
+## Install
+
+Download the latest release:
+
+```bash
+curl -sL https://github.com/devexlabs/cli/releases/download/v0.1-alpha/cli -o ~/cli
+```
+
+```bash
+sudo mv ./cli /usr/local/bin
+```
+
+Run `init` command to choose and build docker with tools:
+
+```bash
+cli init
+```
+
 ## Development
 
 Dependencies:
